@@ -7,3 +7,8 @@ chrome.runtime.onInstalled.addListener(() => {
         });
     }, { url: [{ urlMatches: 'google.com' }] });
 });
+chrome.runtime.onMessage.addListener(data => {
+    if (data.type === 'notification') {
+      chrome.notifications.create('', data.options);
+    }
+  });

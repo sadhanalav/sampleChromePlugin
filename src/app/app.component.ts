@@ -24,6 +24,19 @@ export class AppComponent {
     chrome.storage.sync.set({ color });
   }
 
+  public updateNotification() {
+    console.log('vasudeva');
+    chrome.runtime.sendMessage('', {
+      type: 'notification',
+      options: {
+        title: 'Just wanted to notify you',
+        message: 'Notification Updated!',
+        iconUrl: 'favicon.ico',
+        type: 'basic'
+      }
+    });
+  }
+
   ngOnInit(): void {
     chrome.storage.sync.get('color', ({ color }) => {
       this.color = color;
